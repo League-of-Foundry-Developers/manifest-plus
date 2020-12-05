@@ -48,7 +48,7 @@ jobs:
             cp ./wiki-article.md ./pages/${{ steps.get-name.outputs.name }}/wiki-article.md
 
       - name: Add To Index
-        run: ./.github/workflows/helpers/append.js
+        run: sudo ./.github/workflows/helpers/append.js
         env:
           FOLDER_NAME: ${{ steps.get-name.outputs.name }}
 
