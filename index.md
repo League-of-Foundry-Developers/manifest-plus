@@ -1,0 +1,1 @@
+* [05-12-2020](https://League-of-Foundry-Developers.github.io/manifest-plus/2020-12-05-22-33/wiki-article.html)
