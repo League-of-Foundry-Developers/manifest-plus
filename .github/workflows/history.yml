@@ -40,7 +40,7 @@ jobs:
       - name: Get Folder Name
         shell: bash
         id: get-name
-        run: echo "::set-output name=name::$(./.github/workflows/helpers/get-name.js)"
+        run: echo "::set-output name=name::$(node ./.github/workflows/helpers/get-name.js)"
 
       - name: Make Dir
         run: |
@@ -48,7 +48,7 @@ jobs:
             cp ./wiki-article.md ./pages/${{ steps.get-name.outputs.name }}/wiki-article.md
 
       - name: Add To Index
-        run: sudo ./.github/workflows/helpers/append.js
+        run: node ./.github/workflows/helpers/append.js
         env:
           FOLDER_NAME: ${{ steps.get-name.outputs.name }}
 
