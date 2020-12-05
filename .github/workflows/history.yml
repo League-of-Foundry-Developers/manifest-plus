@@ -29,7 +29,7 @@ jobs:
 
       - name: Checkout Pages
         uses: actions/checkout@v2
-        if: ${{ steps.pages-exists.outputs.exists }}
+        if: ${{ steps.pages-exists.outputs.exists == 'true' }}
         with:
           ref: gh-pages
           path: pages
