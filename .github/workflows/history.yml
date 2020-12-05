@@ -16,11 +16,20 @@ jobs:
         with:
           node-version: 14.x
 
+      - name: Check If gh-pages Exists
+        id: pages-exists
+        uses: arundo/branch-exists@master
+        with:
+          repository: ${{ github.repository }}
+          branch: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Checkout Repo
         uses: actions/checkout@v2
 
       - name: Checkout Pages
         uses: actions/checkout@v2
+        if: ${{ steps.pages-exists.outputs.exists }}
         with:
           ref: gh-pages
           path: pages
