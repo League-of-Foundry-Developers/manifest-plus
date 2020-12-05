@@ -1,0 +1,52 @@
+name: Deploy historical version
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - wiki-article.md
+
+jobs:
+  deploy:
+    name: Deploy Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Node Environment
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Checkout Pages
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: pages
+
+      - name: Install Dependencies
+        run: npm install moment --only=prod
+
+      - name: Get Folder Name
+        shell: bash
+        id: get-name
+        run: echo "::set-output name=name::$(./.github/workflows/helpers/get-name.js)"
+
+      - name: Make Dir
+        run: |
+            mkdir -p ./pages/${{ steps.get-name.outputs.name }}
+            cp ./wiki-article.md ./pages/${{ steps.get-name.outputs.name }}/wiki-article.md
+
+      - name: Add To Index
+        run: ./.github/workflows/helpers/append.js
+        env:
+          FOLDER_NAME: ${{ steps.get-name.outputs.name }}
+
+      - name: Deploy
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: gh-pages
+          FOLDER: pages
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
