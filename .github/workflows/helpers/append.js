@@ -1,8 +1,9 @@
 const fs = require("fs");
 const moment = require("moment");
+const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/")
 
 fs.writeFileSync(
-  "./pages/index.html",
-  `<li><a href="https://github.com/${process.env.GITHUB_REPOSITORY}/blob/gh-pages/${process.env.FOLDER_NAME}/wiki-article.md">${moment().format("DD-MM-YYYY")}</a></li>`,
+  "./pages/index.md",
+  `* [${moment().format("DD-MM-YYYY")}](https://${owner}.github.io/${repo}/${process.env.FOLDER_NAME}/wiki-article.html)`,
   { flag: "a" }
 );
