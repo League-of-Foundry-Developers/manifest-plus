@@ -170,3 +170,4 @@ Additionally, the optional `versionMin` and `versionMax` properties can be used 
   }
 ]
 ```
+
