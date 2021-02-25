@@ -26,7 +26,7 @@ The core Foundry VTT manifest specification has two ways of defining the package
 field which expects a simple string or the more complex `authors` field. We *highly* recommend including the `authors` 
 field in your package as it provides much more flexibility.
 
-> Currently while `authors` is a part of the standard manifest, Foundry does not actually utilize this field, and you 
+> Currently, while `authors` is a part of the standard manifest Foundry VTT does not actually utilize this field, so you 
 > should also include the `author` field until such a time as that changes. {.is-info}
 
 The `authors` field is an array of objects with each object providing information about one of the authors of the 
@@ -67,8 +67,8 @@ reasonable in order to provide enriched metadata for your package.
 Document Version: 1.1.0
 
 It is recommended to include a `manifestPlusVersion` field in your manifest to denote which version of Manifest+ you 
-have implemented. We do not intend for breaking changes to this specification, but if they do happen we will increment 
-the major version in accordance with [semantic versioning](https://semver.org/).
+have implemented. Breaking changes are not intended for this specification, but if they do occur the major version 
+will be incremented in accordance with [semantic versioning](https://semver.org/).
 
 ```json
 "manifestPlusVersion": "1.1.0"
@@ -77,9 +77,9 @@ the major version in accordance with [semantic versioning](https://semver.org/).
 
 <a name="manifest-media"></a>
 ### Media
-One of the largest additions, the `media` field is an array of objects which each provide data for a single 
-multimedia item. This data includes a special `type` field which indicates what kind of media is being provided, as 
-well as a `url` field which provides the address of the media resource.
+One of the largest additions, the `media` field, is an array of objects which each provide data for a single 
+multimedia item. This data includes a `type` field which indicates what kind of media is being provided as 
+well as an `url` field which provides the address of the media resource.
 
 ```json
 "media": [
@@ -103,13 +103,13 @@ well as a `url` field which provides the address of the media resource.
 <a name="manifest-media-media-types"></a>
 #### Media Types
 The following type of media are defined by the Manifest+ specification:
-- `"cover"` - A "cover image" which is intended to be displayed along with the package description.
-- `"icon"` - A small image icon such as a logo or author avatar.
-- `"screenshot"` - An image of the package in action.
-- `"video"` - A video file which can be played, or the address of an embeddable video (such as Youtube or Vimeo)
-    - `"loop"` - Optional Field specific to Video type media. If loop is true, the video is expected to be treated as 
+- `cover` - A cover image which is intended to be displayed along with the package description.
+- `icon` - A small image icon such as a logo or author avatar.
+- `screenshot` - An image of the package in action.
+- `video` - A video file which can be played, or the URL of an embeddable video (such as Youtube or Vimeo)
+    - `loop` - Optional field specific to video media. If loop is set to true, the video is expected to be treated as 
       an animated image, like a GIF (i.e. muted and looped).
-    - `"thumbnail"` - Optional url to provide a video thumbnail.
+    - `thumbnail` - Optional URL to provide a video thumbnail.
 
 <a name="manifest-media-media-recommendations"></a>
 #### Media Recommendations
@@ -118,19 +118,19 @@ usages.
 
 <a name="manifest-media-media-recommendations-cover"></a>
 ##### Cover
-Avoid putting large text on the cover image, it should showcase the package rather than the name of the package.
+Avoid putting large text on the cover image as it should showcase the package rather than the name of the package.
 
 - Width: 1280px
 - Aspect Ratio: 2:1
 
-Currently used on the [Forge's Bazaar](https://forge-vtt.com/bazaar).
+This is currently used on the [Forge's Bazaar](https://forge-vtt.com/bazaar).
 
 <a name="manifest-media-media-recommendations-icon"></a>
 ##### Icon
 - Width: 512px
 - Aspect Ratio: 1:1
 
-Fallback on the Bazaar if Cover is not defined.
+Fallback on the Bazaar if `cover` is not defined.
 
 <a name="manifest-media-media-recommendations-screenshot"></a>
 ##### Screenshot
@@ -142,9 +142,9 @@ the longer it will take to load.
 ##### Video
 Anything that should go into an `<video>` HTML element: `.mp4`, `.webm`.
 
-Additionally, some Manifest+ consumers may supported embedding video from common providers like YouTube and Vimeo, 
-the address of the video can be provided in the `url` field. Consumers should take care to parse this field 
-appropriately to avoid loading a YouTube video in a `<video>` element, or an `.mp4` in a YouTube embed.
+Additionally, some Manifest+ consumers may supported embedding video from common providers like YouTube and Vimeo. 
+The address of the video can be provided in the `url` field. Consumers should take care to parse this field 
+appropriately to avoid loading a YouTube video in a `<video>` element or an `.mp4` in a YouTube embed.
 
 <a name="manifest-media-media-recommendations-video-thumbnail"></a>
 ##### Video Thumbnail
@@ -155,7 +155,7 @@ Should be a static image.
 
 <a name="manifest-library"></a>
 ### Library
-The `library` field is a boolean that indicates whether the package is "library" intended for other packages to 
+The `library` field is a boolean that indicates whether the package is a "library" intended for other packages to 
 depend on and consume. This field should be `true` if your package doesn't present any user-facing features, but 
 rather provides functionality for other packages to utilize and rely upon. Packages with this field set to `true` 
 may be hidden from third party package lists to avoid confusing users.
@@ -176,13 +176,13 @@ it needs to be `true`.
 This field is intended to allow developers to create improved deployment tools. The `includes` field is an array 
 of strings where each string is a relative file path that should be included in the package zip archive. Special CI / 
 CD tools can use this field along with the official fields for scripts, languages, and styles to generate the archive 
-with only the desired files, without needing to create an additional configuration file.
+with only the desired files without needing to create an additional configuration file.
 
 ```json
 "includes": [
-	"relative/path/to/files/script.js", 
-	"relative/path/to/templates/template.html", 
-	"path/to/image/assets/folder"
+   "relative/path/to/files/script.js", 
+   "relative/path/to/templates/template.html", 
+   "path/to/image/assets/folder"
 ]
 ```
 
@@ -198,13 +198,13 @@ The `deprecated` field is an object which contains a number of fields explaining
 
 <a name="manifest-deprecated-fields"></a>
 #### Fields
-- `"coreVersion"` - If set the package is assumed to be a module that has been deprecated by a Foundry VTT core update. 
+- `coreVersion` - If set the package is assumed to be a module that has been deprecated by a Foundry VTT core update. 
   This field is the core version number as a string.
-- `"reason"` - A human-readable string explaining why the package was deprecated.
-- `"alternatives"` - An array of objects each providing data about another package which could act as a replacement for 
+- `reason` - A human-readable string explaining why the package was deprecated.
+- `alternatives` - An array of objects each providing data about another package which could act as a replacement for 
   deprecated package.
     - `alternatives.name` - The `name` of the alternative package.
-    - `alternatives.manifest` - The URL of the `manifest.json` file for the alternative package, from which it can be 
+    - `alternatives.manifest` - The URL of the manifest file for the alternative package from which it can be 
       downloaded.
 
 ```json
@@ -214,7 +214,7 @@ The `deprecated` field is an object which contains a number of fields explaining
   "alternatives": [
     {
       "name": "module-name",
-      "manifest": "https://link.com/to/manifest.json"
+      "manifest": "https://link.com/to/module.json"
     }
   ]
 }

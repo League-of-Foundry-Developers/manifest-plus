@@ -1,5 +1,5 @@
 ### Library
-The `library` field is a boolean that indicates whether the package is "library" intended for other packages to 
+The `library` field is a boolean that indicates whether the package is a "library" intended for other packages to 
 depend on and consume. This field should be `true` if your package doesn't present any user-facing features, but 
 rather provides functionality for other packages to utilize and rely upon. Packages with this field set to `true` 
 may be hidden from third party package lists to avoid confusing users.

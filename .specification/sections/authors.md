@@ -4,7 +4,7 @@ The core Foundry VTT manifest specification has two ways of defining the package
 field which expects a simple string or the more complex `authors` field. We *highly* recommend including the `authors` 
 field in your package as it provides much more flexibility.
 
-> Currently while `authors` is a part of the standard manifest, Foundry does not actually utilize this field, and you 
+> Currently, while `authors` is a part of the standard manifest Foundry VTT does not actually utilize this field, so you 
 > should also include the `author` field until such a time as that changes. {.is-info}
 
 The `authors` field is an array of objects with each object providing information about one of the authors of the 
