@@ -6,7 +6,7 @@ The specification is split into sections found in `./specification` and compiled
 
 Archives of past specification versions are located in `./archive`.
 
-### Install
+#### Install
 To create the specification:
 - npm install
 - npm run create-specification 
