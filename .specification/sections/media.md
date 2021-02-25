@@ -1,5 +1,5 @@
 ### Media
-One of the largest additions, the `media` field, is an array of objects which each provide data for a single 
+One of the largest additions, the `media` field, is an array of objects that each provide data for a single 
 multimedia item. This data includes a `type` field which indicates what kind of media is being provided as 
 well as an `url` field which provides the address of the media resource.
 
