@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - wiki-article.md
+      - ManifestPlus.md
 
 jobs:
   deploy:
@@ -45,7 +45,7 @@ jobs:
       - name: Make Dir
         run: |
             mkdir -p ./pages/${{ steps.get-name.outputs.name }}
-            cp ./wiki-article.md ./pages/${{ steps.get-name.outputs.name }}/wiki-article.md
+            cp ./ManifestPlus.md ./pages/${{ steps.get-name.outputs.name }}/ManifestPlus.md
 
       - name: Add To Index
         run: node ./.github/workflows/helpers/append.js
