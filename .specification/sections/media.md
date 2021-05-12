@@ -1,23 +1,27 @@
 ### Media
 One of the largest additions, the `media` field, is an array of objects that each provide data for a single 
 multimedia item. This data includes a `type` field which indicates what kind of media is being provided as 
-well as an `url` field which provides the address of the media resource.
+well as an `url` field which provides the address of the media resource. An optional `caption` field is available
+to describe your multimedia item. 
 
 ```json
 "media": [
   {
     "type": "screenshot",
-    "url": "link/to/media/file"
+    "url": "link/to/media/file",
+    "caption": "<Insert description of screenshot>"
   },
   {
     "type": "cover",
-    "url": "https://somereposite.com/author/repo/raw/images/cover.png"
+    "url": "https://somereposite.com/author/repo/raw/images/cover.png",
+    "caption": "<Insert module / system name>"
   },
   {
     "type": "video",
     "url": "https://somereposite.com/author/repo/raw/videos/demo.webm",
     "loop": true,
-    "thumbnail": "https://somereposite.com/author/repo/raw/images/thumb.png"
+    "thumbnail": "https://somereposite.com/author/repo/raw/images/thumb.png",
+    "caption": "<Insert description of a cool feature from the video>"
   }
 ]
 ```
@@ -35,6 +39,11 @@ The following type of media are defined by the Manifest+ specification:
 #### Media Recommendations
 There is no guarantee how the media files will be used, but these are the recommended dimensions and known existing 
 usages.
+
+#### Caption
+Every media type accepts an optional caption field that can be used to describe what the media shows. It is up to the 
+consumer of the Manifest+ specification to determine how it is used. The caption could be used as an alt image tag or as
+an actual caption below the media type itself.
 
 ##### Cover
 Avoid putting large text on the cover image as it should showcase the package rather than the name of the package.

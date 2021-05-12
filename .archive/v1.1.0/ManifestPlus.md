@@ -64,14 +64,14 @@ reasonable in order to provide enriched metadata for your package.
 
 <a name="manifest-version"></a>
 ### Version
-Document Version: 1.2.0
+Document Version: 1.1.0
 
 It is recommended to include a `manifestPlusVersion` field in your manifest to denote which version of Manifest+ you 
 have implemented. Breaking changes are not intended for this specification, but if they do occur the major version 
 will be incremented in accordance with [semantic versioning](https://semver.org/).
 
 ```json
-"manifestPlusVersion": "1.2.0"
+"manifestPlusVersion": "1.1.0"
 ```
 
 
@@ -79,27 +79,23 @@ will be incremented in accordance with [semantic versioning](https://semver.org/
 ### Media
 One of the largest additions, the `media` field, is an array of objects that each provide data for a single 
 multimedia item. This data includes a `type` field which indicates what kind of media is being provided as 
-well as an `url` field which provides the address of the media resource. An optional `caption` field is available
-to describe your multimedia item. 
+well as an `url` field which provides the address of the media resource.
 
 ```json
 "media": [
   {
     "type": "screenshot",
-    "url": "link/to/media/file",
-    "caption": "<Insert description of screenshot>"
+    "url": "link/to/media/file"
   },
   {
     "type": "cover",
-    "url": "https://somereposite.com/author/repo/raw/images/cover.png",
-    "caption": "<Insert module / system name>"
+    "url": "https://somereposite.com/author/repo/raw/images/cover.png"
   },
   {
     "type": "video",
     "url": "https://somereposite.com/author/repo/raw/videos/demo.webm",
     "loop": true,
-    "thumbnail": "https://somereposite.com/author/repo/raw/images/thumb.png",
-    "caption": "<Insert description of a cool feature from the video>"
+    "thumbnail": "https://somereposite.com/author/repo/raw/images/thumb.png"
   }
 ]
 ```
@@ -120,13 +116,7 @@ The following type of media are defined by the Manifest+ specification:
 There is no guarantee how the media files will be used, but these are the recommended dimensions and known existing 
 usages.
 
-<a name="manifest-media-caption"></a>
-#### Caption
-Every media type accepts an optional caption field that can be used to describe what the media shows. It is up to the 
-consumer of the Manifest+ specification to determine how it is used. The caption could be used as an alt image tag or as
-an actual caption below the media type itself.
-
-<a name="manifest-media-caption-cover"></a>
+<a name="manifest-media-media-recommendations-cover"></a>
 ##### Cover
 Avoid putting large text on the cover image as it should showcase the package rather than the name of the package.
 
@@ -135,20 +125,20 @@ Avoid putting large text on the cover image as it should showcase the package ra
 
 This is currently used on the [Forge's Bazaar](https://forge-vtt.com/bazaar).
 
-<a name="manifest-media-caption-icon"></a>
+<a name="manifest-media-media-recommendations-icon"></a>
 ##### Icon
 - Width: 512px
 - Aspect Ratio: 1:1
 
 Fallback on the Bazaar if `cover` is not defined.
 
-<a name="manifest-media-caption-screenshot"></a>
+<a name="manifest-media-media-recommendations-screenshot"></a>
 ##### Screenshot
 Anything that should go into an `<img>` HTML element: `.png`, `.gif`, `.webp`. Try to keep the file size under 1MB, 
 definitely no more than 10MB. Gifs in particular will probably need to be larger, but know that the larger the image 
 the longer it will take to load.
 
-<a name="manifest-media-caption-video"></a>
+<a name="manifest-media-media-recommendations-video"></a>
 ##### Video
 Anything that should go into an `<video>` HTML element: `.mp4`, `.webm`.
 
@@ -156,7 +146,7 @@ Additionally, some Manifest+ consumers may supported embedding video from common
 The address of the video can be provided in the `url` field. Consumers should take care to parse this field 
 appropriately to avoid loading a YouTube video in a `<video>` element or an `.mp4` in a YouTube embed.
 
-<a name="manifest-media-caption-video-thumbnail"></a>
+<a name="manifest-media-media-recommendations-video-thumbnail"></a>
 ##### Video Thumbnail
 Should be a static image.
 
